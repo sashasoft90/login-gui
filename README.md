@@ -1,5 +1,9 @@
 # login_gui
-login with base64 coding for jira or other tools
+It is a Gui Package. In the gui you can specify the user with password. There is a possibility to save the entered data. This is stored in the User Data section of Windows. The class is a singleton and returns the last entered data with every call in the process.
+
+Example code:
+
+Example Video:
 
 
 ### Development environment

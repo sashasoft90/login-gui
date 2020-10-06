@@ -1,6 +1,6 @@
 [run]
 branch = True
-source = ./commonlib
+source = ./login_gui
 
 [report]
 # Regexes for lines to exclude from consideration

@@ -14,10 +14,10 @@ import types
 # noinspection PyUnresolvedReferences
 from setuptools import setup, find_packages
 
-with open("README.md") as f:
+with open("README.md", "r") as f:
     readme = f.read()
 
-version_file = os.path.abspath("commonlib/version.py")
+version_file = os.path.abspath("login_gui/version.py")
 loader = importlib.machinery.SourceFileLoader('version', version_file)
 mod = types.ModuleType(loader.name)
 loader.exec_module(mod)
@@ -29,7 +29,7 @@ def get_all_files(qml_dir, list_of_data):
     function parse all file in folder with suffix
     """
     temp_path = qml_dir.replace("\\", "/")
-    temp_path = temp_path.replace("commonlib/", "")
+    temp_path = temp_path.replace("login_gui/", "")
     temp_path = temp_path + '/'
     qml_dir = os.path.abspath(qml_dir)
     for root, _, _ in os.walk(qml_dir):
@@ -49,7 +49,7 @@ with open('requirements.txt') as f:
     requirements = f.read().splitlines()
 
 classifiers = [
-    "Development Status :: 2 - Pre-Alpha",  # todo "Development Status :: 5 - Production/Stable",
+    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
     "Programming Language :: Python",
@@ -60,14 +60,14 @@ classifiers = [
 ]
 
 setup(
-    name="commonLib",
+    name="login-gui-sashasoft90",
     version=version,
-    description="",
+    description="Gui with User/Password requesting and save in base64",
     long_description=readme,
-    author="ESPRiT Engineering GmbH on the commission of BMW Group",
-    author_email="alexander.sacharov@esprit-engineering.com",
-    url="",  # todo: add repo url
-    license="LGPL v3",
+    author="Alexander Sacharov",
+    author_email="alexander.sacharov@t-online.de",
+    url="https://github.com/sashasoft90/login-gui",
+    license="MIT",
     packages=find_packages(),
     zip_safe=False,
     package_data={

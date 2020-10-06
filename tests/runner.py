@@ -15,8 +15,8 @@ def runner():
     one_suite = unittest.defaultTestLoader.discover(".", pattern="test_*.py")
     kwargs = {
         "output": os.path.join(os.path.abspath(os.path.dirname(__file__)), '..\\.log\\test_report\\'),
-        "report_name": "commonlib",
-        "report_title": "commonlib",
+        "report_name": "login_gui",
+        "report_title": "login_gui",
         "failfast": False,
         "add_timestamp": False,
         "open_in_browser": False,
