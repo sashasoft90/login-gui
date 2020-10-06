@@ -77,7 +77,7 @@ class Loader:
             if line != '':
                 split_line = re.findall(r'.(\d+.\d+.\d+).', line)
                 self.last_date = split_line[0]
-                User(line.replace('[' + self.last_date + ']', '').encode('ascii'))
+                User().save(line.replace('[' + self.last_date + ']', '').encode('ascii'))
                 self.is_exist = True
             file.close()
 

@@ -38,19 +38,32 @@ class User:
     LoggerPackage manager, connection all loggers with package logging.
     Handles all logger files
     """
-    __user64 = str
+    __user64 = bytes
 
-    def init(self, value=''):  # pylint: disable=W0221
+    def __init__(self):  # pylint: disable=W0221
         """__init__ isn´t needed, because in __new__ of Singleton was change to "init"""
-        if value == '':
-            return
+        self.__user64 = bytes
+
+    def save(self, value):
         self.user64 = value
+        return self.user64
+
+    def __str__(self):
+        """
+        return decode user64 to string
+        """
+        # noinspection PyArgumentList
+        return self.user64.decode()
+
+    def decode(self):
+        """
+        getter for user
+        """
+        return base64.b64decode(self.user64).decode()
 
     @property
     def user64(self):
         """save base64 user data"""
-        if self.__user64 == str:
-            raise Exception('login data is wrong')
         return self.__user64
 
     @user64.setter

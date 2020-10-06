@@ -27,11 +27,14 @@ class LoginGui:
     """main window"""
     __root = None
 
-    def __init__(self):
-        self.root = Tk(className=" Jira login")
-        self.__center_window()
-        LoginFrame(self.root)
-        self.root.mainloop()
+    def __init__(self, root=None):
+        if root is None or not isinstance(root, Tk):
+            self.root = Tk(className=" Jira login")
+            self.__center_window()
+            self.root.mainloop()
+        else:
+            LoginFrame(self.root)
+
 
     @property
     def root(self):
