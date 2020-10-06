@@ -17,23 +17,24 @@ https://stackoverflow.com/questions/4083796/how-do-i-run-unittest-on-a-tkinter-a
 """
 
 import _tkinter
+import os
 import tkinter
 import unittest
-from tkinter import ttk
-
 
 # noinspection PyPep8Naming
-from login_gui import LoginGui
+from login_gui import LoginGui, User
 
 
 class TestGui(unittest.TestCase):
     def setUp(self):
         self.root = tkinter.Tk()
+        LoginGui(self.root)
         self.pump_events()
+        self.login_frame = self.root.children['!loginframe']
 
     def tearDown(self):
         if self.root:
-            self.root.destroy()
+            # self.root.destroy()
             self.pump_events()
 
     def pump_events(self):
@@ -41,40 +42,23 @@ class TestGui(unittest.TestCase):
             pass
 
     def test_enter(self):
-        v = View_AskText(self.root, value=u"йцу")
+        self.login_frame._loader.path = os.path.abspath('\\.log')
+        self.assertEqual(self.login_frame._entry_username.get(), '')
+        self.login_frame._entry_username.focus_set()
+        self.login_frame._entry_username.insert(0, u'user')
+        self.assertEqual(self.login_frame._entry_username.get(), 'user')
+
+        self.assertEqual(self.login_frame._entry_password.get(), '')
+        self.login_frame._entry_password.focus_set()
+        self.login_frame._entry_password.insert(0, u'password')
+        self.assertEqual(self.login_frame._entry_password.get(), 'password')
+
+        self.assertEqual(self.login_frame._var.get(), 1)
+        self.login_frame._checkbox.toggle()
+        self.assertEqual(self.login_frame._var.get(), False)
+
         self.pump_events()
-        v.e.focus_set()
-        v.e.insert(tkinter.END, u'кен')
-        v.e.event_generate('<Return>')
-        self.pump_events()
 
-        self.assertRaises(tkinter.TclError, lambda: v.top.winfo_viewable())
-        self.assertEqual(v.value, u'йцукен')
-
-
-# ###########################################################
-# The class being tested (normally, it's in a separate module
-# and imported at the start of the test's file)
-# ###########################################################
-
-class View_AskText(object):
-    def __init__(self, master, value=u""):
-        self.value = None
-        LoginGui(master)
-
-        top = self.top = tkinter.Toplevel(master)
-        top.grab_set()
-        self.l = ttk.Label(top, text=u"Value:")
-        self.l.pack()
-        self.e = ttk.Entry(top)
-        self.e.pack()
-        self.b = ttk.Button(top, text='Ok', command=self.save)
-        self.b.pack()
-
-        if value: self.e.insert(0, value)
-        self.e.focus_set()
-        top.bind('<Return>', self.save)
-
-    def save(self, *_):
-        self.value = self.e.get()
-        self.top.destroy()
+        self.assertNotEqual(User().decode(), 'user:password')
+        self.login_frame._login_button.invoke()
+        self.assertEqual(User().decode(), 'user:password')

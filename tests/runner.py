@@ -6,6 +6,8 @@ import unittest
 
 from HtmlTestRunner import HTMLTestRunner
 
+from login_gui.version import version
+
 
 def runner():
     """
@@ -16,7 +18,7 @@ def runner():
     kwargs = {
         "output": os.path.join(os.path.abspath(os.path.dirname(__file__)), '..\\.log\\test_report\\'),
         "report_name": "login_gui",
-        "report_title": "login_gui",
+        "report_title": "login_gui %s" % version,
         "failfast": False,
         "add_timestamp": False,
         "open_in_browser": False,

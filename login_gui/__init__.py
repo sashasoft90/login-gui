@@ -28,13 +28,13 @@ class LoginGui:
     __root = None
 
     def __init__(self, root=None):
-        if root is None or not isinstance(root, Tk):
+        if root is None or not isinstance(root, Tk):  # pragma: no cover
             self.root = Tk(className=" Jira login")
             self.__center_window()
+            LoginFrame(self.root)
             self.root.mainloop()
         else:
             LoginFrame(self.root)
-
 
     @property
     def root(self):
@@ -42,13 +42,13 @@ class LoginGui:
         return self.__root
 
     @root.setter
-    def root(self, value):
+    def root(self, value):  # pragma: no cover
         if isinstance(value, Tk):
             self.__root = value
             return
         raise Exception('no Tk is value')
 
-    def __center_window(self, wight=300, height=100):
+    def __center_window(self, wight=300, height=100):  # pragma: no cover
         """create standard issue"""
         # get screen width and height
         wight_screen = self.root.winfo_screenwidth()

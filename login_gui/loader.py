@@ -53,7 +53,7 @@ class Loader:
     @last_date.setter
     def last_date(self, value):
         if not isinstance(value, str):
-            raise TypeError('value must be bool!')
+            raise TypeError('value must be bool!')  # pragma: no cover
         self.__last_date = value
 
     @property
@@ -64,24 +64,24 @@ class Loader:
     @is_exist.setter
     def is_exist(self, value):
         if not isinstance(value, bool):
-            raise TypeError('value must be bool!')
+            raise TypeError('value must be bool!')  # pragma: no cover
         self.__is_exist = value
 
     def read(self):
         """read user class data from file"""
         self.is_exist = False
         self.last_date = ''
-        if os.path.exists(self.path):
+        if os.path.exists(self.path):  # pragma: no cover
             file = open(self.path, 'r')
             line = file.readline()
-            if line != '':
+            if line != '':  # pragma: no cover
                 split_line = re.findall(r'.(\d+.\d+.\d+).', line)
                 self.last_date = split_line[0]
                 User().save(line.replace('[' + self.last_date + ']', '').encode('ascii'))
                 self.is_exist = True
             file.close()
 
-    def write(self, value):
+    def write(self, value):  # pragma: no cover
         """write user class data to file"""
         dir_name = os.path.dirname(self.path)
         if not os.path.exists(dir_name):
