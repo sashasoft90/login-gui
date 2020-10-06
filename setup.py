@@ -70,7 +70,7 @@ setup(
     packages=find_packages(),
     zip_safe=False,
     package_data={
-        "autool32": package_data
+        "login-gui": package_data
     },
     classifiers=classifiers,
     install_requires=requirements,
