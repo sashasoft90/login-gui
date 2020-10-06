@@ -45,8 +45,7 @@ package_data = list()
 package_data = get_all_files('commonlib', package_data)
 
 # get all requirements
-with open('requirements.txt') as f:
-    requirements = f.read().splitlines()
+requirements = ['py-singleton']
 
 classifiers = [
     "Development Status :: 5 - Production/Stable",
