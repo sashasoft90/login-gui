@@ -1,0 +1,20 @@
+[MESSAGES CONTROL]
+disable=
+    # locally-disabled,
+    # locally-enabled,
+    # logging-format-interpolation,
+    # no-init,
+    # too-few-public-methods,
+    too-many-instance-attributes,  # <-- Ensure at least this entry.
+    too-many-public-methods,
+    too-few-public-methods,
+    line-too-long,
+    c-extension-no-member,
+    no-member,
+    import-error,
+    no-name-in-module,
+    fixme
+
+[SIMILARITIES]
+# Ignore imports when computing similarities.
+ignore-imports=yes
