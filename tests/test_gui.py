@@ -15,7 +15,7 @@
 thank for this post
 https://stackoverflow.com/questions/4083796/how-do-i-run-unittest-on-a-tkinter-app
 """
-
+# pylint: disable=wrong-import-order
 import _tkinter
 import os
 import tkinter
@@ -26,22 +26,29 @@ from login_gui import LoginGui, User
 
 
 class TestGui(unittest.TestCase):
+    """gui test"""
+
     def setUp(self):
+        """start up function"""
         self.root = tkinter.Tk()
         LoginGui(self.root)
         self.pump_events()
         self.login_frame = self.root.children['!loginframe']
 
     def tearDown(self):
+        """down function"""
         if self.root:
             # self.root.destroy()
             self.pump_events()
 
     def pump_events(self):
+        """wait function"""
         while self.root.dooneevent(_tkinter.ALL_EVENTS | _tkinter.DONT_WAIT):
             pass
 
+    # pylint: disable=protected-access
     def test_enter(self):
+        """test of all buttons"""
         self.login_frame._loader.path = os.path.abspath('\\.log')
         self.assertEqual(self.login_frame._entry_username.get(), '')
         self.login_frame._entry_username.focus_set()
