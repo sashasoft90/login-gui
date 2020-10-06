@@ -11,15 +11,23 @@
 #   /_______  /\____/|__|   |__|
 #           \/
 #   Copyright (c) 2020.
-
+"""
+test of user class
+"""
 import unittest
 
 from login_gui import User
 from login_gui.user import _is_base64
 
 
-class MyTestCase(unittest.TestCase):
+class UserCase(unittest.TestCase):
+    """
+    Test for user singleton class
+    """
     def setUp(self) -> None:
+        """
+        user setup function
+        """
         self.user = User()
         self.user.save('user:password')
 
@@ -52,4 +60,3 @@ class MyTestCase(unittest.TestCase):
         """
         self.assertTrue(_is_base64(self.user.user64))
         self.assertFalse(_is_base64('string'))
-

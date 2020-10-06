@@ -41,10 +41,12 @@ class User:
     __user64 = bytes
 
     def __init__(self):  # pylint: disable=W0221
-        """__init__ isn´t needed, because in __new__ of Singleton was change to "init"""
         self.__user64 = bytes
 
     def save(self, value):
+        """
+        function for saving of value
+        """
         self.user64 = value
         return self.user64
 
