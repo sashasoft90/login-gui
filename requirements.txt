@@ -2,3 +2,4 @@ html-testRunner
 coverage
 pylint
 py-singleton
+wheel

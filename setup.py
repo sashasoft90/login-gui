@@ -50,7 +50,7 @@ requirements = ['py-singleton']
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
+    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
@@ -63,6 +63,7 @@ setup(
     version=version,
     description="Gui with User/Password requesting and save in base64",
     long_description=readme,
+    long_description_content_type='text/markdown',
     author="Alexander Sacharov",
     author_email="alexander.sacharov@t-online.de",
     url="https://github.com/sashasoft90/login-gui",
