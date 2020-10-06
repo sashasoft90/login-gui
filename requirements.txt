@@ -1,5 +1,2 @@
-pylint
-six
-colored
 html-testRunner
 coverage
