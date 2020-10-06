@@ -9,12 +9,12 @@ Example Video:
 ### Development environment
 
 1. you need [python 3.8.5](https://www.python.org/downloads/release/python-385/)
-1. if you don't have python in windows envirement variable, you must add to python absolutpath
+1. if you don't have python in windows environment variable, you must add to python absolut path
 1. start CMD in you repo path
-1. build venv folder with envirement python for devepolment `python -m venv venv`
+1. build venv folder with environment python for development `python -m venv venv`
 1. activate python with `venv\Scripts\activate.bat`
 1. upgrade pip to new version `python -m pip install --upgrade pip`
-1. install all package for devepolment `pip install -r requirements.txt`
+1. install all package for development `pip install -r requirements.txt`
 1.
 
 ### Tools for Development 
