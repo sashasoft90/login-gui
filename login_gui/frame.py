@@ -15,7 +15,7 @@
 """
 login frame for gui
 """
-from tkinter import Frame, Label, Entry, IntVar, Checkbutton, Button, NORMAL, DISABLED, E
+from tkinter import Frame, Label, Entry, IntVar, Checkbutton, Button, NORMAL, DISABLED, E, Tk
 
 from login_gui.loader import Loader
 from login_gui.user import User
@@ -27,8 +27,9 @@ WIDTH = 17
 class LoginFrame(Frame):  # pylint: disable=too-many-ancestors
     """build frame for gui"""
 
-    def __init__(self, master):
+    def __init__(self, master, main=None):
         super().__init__(master)
+        self.main = main
         self._label_username = Label(self, text="Username")
         self._label_password = Label(self, text="Password")
 
@@ -71,3 +72,5 @@ class LoginFrame(Frame):  # pylint: disable=too-many-ancestors
 
     def _close(self):
         self.master.destroy()
+        if self.main is not None:
+            self.main.close()
