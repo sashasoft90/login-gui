@@ -21,13 +21,7 @@ if __name__ == '__main__':
 >>> 'user:password'
 ```
 Example Video:
-<!-- blank line -->
-<figure class="video_container">
-  <video controls="true" allowfullscreen="true" poster="path/to/poster_image.png">
-    <source src="./video.mp4" type="video/mp4">
-  </video>
-</figure>
-<!-- blank line -->
+![Dome](https://github.com/sashasoft90/login-gui/blob/master/image/demo.gif)
 
 ### Development environment
 
