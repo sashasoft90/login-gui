@@ -21,6 +21,7 @@ if __name__ == '__main__':
 >>> 'user:password'
 ```
 Example Video:
+
 ![Dome](https://github.com/sashasoft90/login-gui/blob/master/image/demo.gif)
 
 ### Development environment
