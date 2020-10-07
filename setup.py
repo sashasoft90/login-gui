@@ -4,7 +4,8 @@ Script includes primary Python package along with essential
 non-Python files, such as QML, svg and .png resources.
 
 Usage:
-    python setup.py sdist
+    python setup.py sdist bdist_wheel
+
 """
 
 import importlib.machinery
@@ -59,7 +60,7 @@ classifiers = [
 ]
 
 setup(
-    name="login-gui-sashasoft90",
+    name="login-gui",
     version=version,
     description="Gui with User/Password requesting and save in base64",
     long_description=readme,
