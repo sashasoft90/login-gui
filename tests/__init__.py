@@ -1,7 +1,7 @@
 """
 test folder with all tests of common lib
 """
-from login_gui import MainGui
+from login_gui import MainGui, User
 
 if __name__ == '__main__':
     functions = [
@@ -11,3 +11,4 @@ if __name__ == '__main__':
     ]
     print(MainGui(functions, 'My Gui').result)
     print(MainGui([], 'My Gui').result)
+    print(str(User().decode()))
