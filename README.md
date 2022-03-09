@@ -19,6 +19,14 @@ if __name__ == '__main__':
 >>> None
     print(str(User().decode()))
 >>> 'user:password'
+functions = [
+        (True, "test function 0"),
+        (False, "test function 1"),
+        (True, "test function 2"),
+    ]
+
+    print(MainGui(functions, 'My Gui').result)
+>>> 'user:password'
 ```
 Example Video:
 
