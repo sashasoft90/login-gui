@@ -17,13 +17,14 @@ test of user class
 import unittest
 
 from login_gui import User
-from login_gui.user import _is_base64
+from login_gui.user import is_base64
 
 
 class UserCase(unittest.TestCase):
     """
     Test for user singleton class
     """
+
     def setUp(self) -> None:
         """
         user setup function
@@ -58,5 +59,17 @@ class UserCase(unittest.TestCase):
         """
         test for test function
         """
-        self.assertTrue(_is_base64(self.user.user64))
-        self.assertFalse(_is_base64('string'))
+        self.assertTrue(is_base64(self.user.user64))
+        self.assertFalse(is_base64('string'))
+
+    def test_split(self):
+        """
+        test of split funktion
+        """
+        user = User()
+        user.save('user:pw')
+        self.assertEqual(user.split(), ['user', 'pw'])
+        self.assertEqual(user.split('.'), ['user:pw'])
+
+        with self.assertRaises(IOError):
+            user.split(['.', ':'])

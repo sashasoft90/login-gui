@@ -60,25 +60,30 @@ class LoginGui:
 
 
 class MainGui:
-    def __init__(self, functions, name='Login'):
+    def __init__(self, functions, name='Login', save_path=None, is_save_enable=False):
         self.result = None
         if not isinstance(functions, list):
             raise IOError('functions must be list of names and function handler')
-        wight = 300
-        height = 100
+
         self.root = Tk(className=name)
-        self._var = list()
-        self._checkbox = list()
+        self._var = []
+        self._checkbox = []
         for function in functions:
-            if not isinstance(function, str):
-                raise IOError('one function is a list names of function')
+            if isinstance(function, str):
+                default = True
+                value = function
+            elif isinstance(function, tuple) and list(map(type, function)) == [bool, str]:
+                default, value = function
+            else:
+                raise IOError('function is a list of function names or tuples with default value (bool) and name')
+
             self._var.append(IntVar())
-            self._var[-1].set(1)
-            self._checkbox.append(Checkbutton(self.root, text=function, variable=self._var[-1]))
+            self._var[-1].set(default)
+            self._checkbox.append(Checkbutton(self.root, text=value, variable=self._var[-1]))
             self._checkbox[-1].grid(columnspan=2)
         self.frame = Frame(self.root)
         self.frame.grid(columnspan=2)
-        LoginFrame(self.frame, self)
+        LoginFrame(self.frame, self, save_path=save_path, is_save_enable=is_save_enable)
         self.root.mainloop()
 
     def close(self):

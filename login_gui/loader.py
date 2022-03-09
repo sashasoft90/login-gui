@@ -25,9 +25,9 @@ from login_gui.user import User
 
 class Loader:
     """loader class can load file to read and write user class data"""
-    __path = str
-    __is_exist = bool
-    __last_date = str
+    __path: str = os.path.abspath(os.path.join(os.getenv('USERPROFILE'), '.login-gui', 'info'))
+    __is_exist: bool = False
+    __last_date: str = ''
 
     def __init__(self, path=None):
         self.path = path
@@ -40,10 +40,8 @@ class Loader:
 
     @path.setter
     def path(self, value):
-        self.__path = value
-        if value is None:
-            self.__path = os.path.abspath(os.getenv('APPDATA') + '\\.JiraApiAS\\Login')
-            return
+        if value is not None:
+            self.__path = value
 
     @property
     def last_date(self):
@@ -72,21 +70,21 @@ class Loader:
         self.is_exist = False
         self.last_date = ''
         if os.path.exists(self.path):  # pragma: no cover
-            file = open(self.path, 'r')
-            line = file.readline()
-            if line != '':  # pragma: no cover
-                split_line = re.findall(r'.(\d+.\d+.\d+).', line)
-                self.last_date = split_line[0]
-                User().save(line.replace('[' + self.last_date + ']', '').encode('ascii'))
-                self.is_exist = True
-            file.close()
+            with open(self.path, 'r', encoding='utf-8') as fid:
+                line = fid.readline()
+                if line != '':  # pragma: no cover
+                    split_line = re.findall(r'.(\d+.\d+.\d+).', line)
+                    self.last_date = split_line[0]
+                    User().save(line.replace('[' + self.last_date + ']', '').encode('ascii'))
+                    self.is_exist = True
+                fid.close()
 
     def write(self, value):  # pragma: no cover
         """write user class data to file"""
         dir_name = os.path.dirname(self.path)
         if not os.path.exists(dir_name):
             os.mkdir(dir_name)
-        file = open(self.path, 'w')
-        today = datetime.now().strftime("[%d.%m.%Y]")
-        file.write(today + value.decode())
-        file.close()
+        with open(self.path, 'w', encoding='utf-8') as fid:
+            today = datetime.now().strftime("[%d.%m.%Y]")
+            fid.write(today + value.decode())
+            fid.close()

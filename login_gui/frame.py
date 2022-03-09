@@ -15,7 +15,7 @@
 """
 login frame for gui
 """
-from tkinter import Frame, Label, Entry, IntVar, Checkbutton, Button, NORMAL, DISABLED, E, Tk
+from tkinter import Frame, Label, Entry, IntVar, Checkbutton, Button, NORMAL, DISABLED, E
 
 from login_gui.loader import Loader
 from login_gui.user import User
@@ -27,7 +27,7 @@ WIDTH = 17
 class LoginFrame(Frame):  # pylint: disable=too-many-ancestors
     """build frame for gui"""
 
-    def __init__(self, master, main=None):
+    def __init__(self, master, main=None, save_path=None, is_save_enable=False):
         super().__init__(master)
         self.main = main
         self._label_username = Label(self, text="Username")
@@ -42,12 +42,12 @@ class LoginFrame(Frame):  # pylint: disable=too-many-ancestors
         self._entry_password.grid(row=1, column=1)
 
         self._var = IntVar()
-        self._var.set(1)
+        self._var.set(is_save_enable)
         self._checkbox = Checkbutton(self, text="Save login data (64-bit)", variable=self._var)
 
         self._checkbox.grid(columnspan=2)
 
-        self._loader = Loader()
+        self._loader = Loader(path=save_path)
 
         self._login_button = Button(self, text="login", command=self.__login_click, height=HEIGHT, width=WIDTH)
         self._load_button = Button(self, text="Load from " + self._loader.last_date, command=self._close,
@@ -65,7 +65,7 @@ class LoginFrame(Frame):  # pylint: disable=too-many-ancestors
         self.pack()
 
     def __login_click(self):
-        User().user64 = '{}:{}'.format(self._entry_username.get(), self._entry_password.get())
+        User().user64 = f'{self._entry_username.get()}:{self._entry_password.get()}'
         if self._var.get():  # pragma: no cover
             self._loader.write(User().user64)
         self._close()
